@@ -1,0 +1,44 @@
+﻿@model Category
+
+
+
+
+<form method="post">
+
+    <div class="category-form">
+        <div class="category-header">
+            <h2 class="p-0">Edit Category</h2>
+            <hr />
+        </div>
+        @* <div asp-validation-summary="ModeOnly"> *@
+
+    </div>
+    <div class="form-group row">
+        <label class="p-0" for="categoryName">Category Name</label>
+        <input asp-for="Name" type="text" id="categoryName" disabled class="form-control" />
+       
+    </div>
+
+    <div class="form-group row">
+        <label class="p-0" for="description">Description</label>
+        <input asp-for="Description" type="text" id="description" disabled class="form-control" />
+      
+
+    </div>
+    <div class="form-group row">
+        <label class="p-0" for="displayOrder">Display Order</label>
+        <input asp-for="DisplayOrder" type="text" id="displayOrder" disabled class="form-control" />
+    
+
+    </div>
+    <div class="form-group text-center row">
+        <button type="submit" class="btn btn-warning" style="width:150px">Delete</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-dark bg-primary">Back To List</a>
+    </div>
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+</form>
+
+
+
+
