@@ -1,53 +1,42 @@
 ﻿@model List<Category>
 
-<div class="container">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Category List
-            </h2>
+    <div class="container">
+        <div class="row pt-4 pb-3">
+            <div class="col-6">
+                <center><h1>Category List</h1></center>
+            </div>
+            <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-success rounded-pill px-3">
+                <i class="bi bi-plus-circle"></i>New Category
+                </a>
+            </div>
+
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Create new Category
-            </a>
-        </div>
-    </div>
+
+   
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Display Order</th>
+        </tr>
+    </thead>
+    <tbody>
+     
+        @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+        {
+            <tr>
+                <td>@obj.Id</td>
+                <td>@obj.Name</td>
+                <td>@obj.Description</td>
+                <td>@obj.DisplayOrder</td>
+            </tr>
+        }
+       
+    </tbody>
+</table>
 </div>
 
-
-<table class="table table-bordered table-striped">
-   <thead>
-        <tr>
-            <th>
-                Category Name
-            </th>
-
-            <th>
-                Description
-            </th>
-
-            <th>
-                Display Order
-            </th>
-        </tr>
-   </thead>
-   
-   <tbody>
-       @foreach(var obj in Model){
-       <tr>
-           <td>
-               @obj.Name
-           </td>
-
-           <td>
-               @obj.Description
-           </td>
-
-           <td>
-                @obj.DisplayOrder
-           </td>
-       </tr>
-       }
-   </tbody>
-</table>
