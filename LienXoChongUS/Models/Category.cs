@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace LienXoChongUS.Models
 {
@@ -9,8 +10,12 @@ namespace LienXoChongUS.Models
 			  //nếu tên là ID thì chương trình tự xác định, còn không thì phải dùng chú thích dữ liệu
 		public int Id { get; set; }
 		[Required]
-		public string Name { get; set; }
-		public string Description { get; set; }
+		[MaxLength(30)]
+        public string Name { get; set; }
+		[Required]
+		[MaxLength(255)]
+        public string Description { get; set; }
+		[Range(1,100)]
 		public int DisplayOrder { get; set; }
 
 	}
