@@ -1,4 +1,4 @@
-namespace LienXoChongUS.Models
+namespace LXxUS.Models
 {
     public class ErrorViewModel
     {

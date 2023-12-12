@@ -1,6 +1,6 @@
-using LienXoChongUS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using LXxUS.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,5 +1,5 @@
-﻿using LienXoChongUS.Data;
-using LienXoChongUS.Models;
+﻿using LXxUS.DataAccess.Data;
+using LXxUS.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LienXoChongUS.Controllers

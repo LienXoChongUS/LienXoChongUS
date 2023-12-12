@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace LienXoChongUS.Migrations
+namespace LXxUS.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableInDB : Migration

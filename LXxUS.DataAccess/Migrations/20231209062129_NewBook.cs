@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace LienXoChongUS.Migrations
+namespace LXxUS.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class NewBook : Migration
