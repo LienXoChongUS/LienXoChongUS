@@ -1,9 +1,8 @@
 ﻿using LienXoChongUS.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace LienXoChongUS.Data
+namespace LXxUS.DataAccess.Data
 {
 	public class AppDbContext : IdentityDbContext<IdentityUser>
 	{
