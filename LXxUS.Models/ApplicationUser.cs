@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace LienXoChongUS.Models
+namespace LXxUS.Models
 {
 
 	public class ApplicationUser:IdentityUser {

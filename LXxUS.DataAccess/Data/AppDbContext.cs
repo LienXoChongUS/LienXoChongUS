@@ -1,5 +1,4 @@
-﻿using LienXoChongUS.Models;
-using LXxUS.Models;
+﻿using LXxUS.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
