@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace LienXoChongUS.Utility
+namespace LXxUS.Utility
 {
     public class EmailSender : IEmailSender
     {

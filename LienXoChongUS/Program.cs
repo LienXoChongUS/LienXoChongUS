@@ -1,7 +1,7 @@
 using LXxUS.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using LienXoChongUS.Utility;
+using LXxUS.Utility;
 using LXxUS.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using LXxUS.DataAccess.Repository;
