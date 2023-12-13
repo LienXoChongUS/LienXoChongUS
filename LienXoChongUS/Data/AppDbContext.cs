@@ -1,18 +1,20 @@
 ﻿using LienXoChongUS.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LienXoChongUS.Data
 {
-    public class AppDbContext : IdentityDbContext
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
-        {
-            
-        }
+	public class AppDbContext : IdentityDbContext<IdentityUser>
+	{
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+		{
 
-        public DbSet<Category> Categories { get; set; }
+		}
+
+		public DbSet<Category> Categories { get; set; }
 		public DbSet<Category> Books { get; set; }
+		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 
