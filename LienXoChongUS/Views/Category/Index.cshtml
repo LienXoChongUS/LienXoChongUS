@@ -1,42 +1,50 @@
 ﻿@model List<Category>
 
-    <div class="container">
-        <div class="row pt-4 pb-3">
-            <div class="col-6">
-                <center><h1>Category List</h1></center>
-            </div>
-            <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-success rounded-pill px-3">
-                <i class="bi bi-plus-circle"></i>New Category
-                </a>
-            </div>
-
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h1>Category List</h1>
         </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-success rounded-pill px-3">
+                <i class="bi bi-plus-circle"></i> New Category
+            </a>
+        </div>
+    </div>
 
-   
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Display Order</th>
-        </tr>
-    </thead>
-    <tbody>
-     
-        @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
-        {
+   @*  Partial được sử dụng để hiển thị một "partial view" có tên là "_Notification" trong trang chính của bạn.
+    Một "partial view" trong ASP.NET Core là một phần nhỏ của HTML có thể được sử dụng lại và đưa vào các trang khác nhau *@
+    <partial name="_Notification"/> @* _Notification ở folder share *@
+    
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@obj.Id</td>
-                <td>@obj.Name</td>
-                <td>@obj.Description</td>
-                <td>@obj.DisplayOrder</td>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Display Order</th>
             </tr>
-        }
-       
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.Name</td>
+                    <td>@obj.Description</td>
+                    <td>@obj.DisplayOrder</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-delete mx-2">
+                                <i class="bi bi-trash3"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
-

@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace LienXoChongUS.Migrations
+namespace LXxUS.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class AddNewTable : Migration
+    public partial class AddNewTable2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

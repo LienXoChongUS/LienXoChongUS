@@ -2,10 +2,10 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace LienXoChongUS.Models
+namespace LXxUS.Models
 {
-	public class Book
-	{
+    public class Book
+    {
 
-	}
+    }
 }
