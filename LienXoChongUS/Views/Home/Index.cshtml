@@ -1,8 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Book>
+<style>
+    .aspect-ratio-container {
+        position: relative;
+        width: 100%;
+        padding-top: 120%; /* Giảm tỷ lệ để làm cho hình ảnh cân đối hơn */
+        overflow: hidden;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    .aspect-ratio-container-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+
+
+
+<div class="row pb-3">
+    @foreach (var book in Model)
+    {
+        <div class="col-lg-3 col-sm-6">
+            <div class="row p-2">
+                <div class="col-12 p-1">
+                    <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                        <div class="aspect-ratio-container">
+                            <img src="@book.ImageUrl" class="card-img-top rounded aspect-ratio-container-child" />
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="pl-1">
+                                <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@book.Title</p>
+                                <p class="card-tile text-warning text-center"> by <b>@book.Author</b></p>
+                            </div>
+                            <div class="pl-1">
+                                <p class="text-dark text-opacity-75 text-center">Price: <span>@book.Price.ToString("c")</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-primary bg-gradient border-0 form-control">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
+
