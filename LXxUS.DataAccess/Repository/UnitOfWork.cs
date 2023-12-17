@@ -12,10 +12,12 @@ namespace LXxUS.DataAccess.Repository
     {
         private AppDbContext _db;
         public ICategoryRepository Category { get; private set; }
+        public IBookRepository Book { get; private set; }
         public UnitOfWork(AppDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
+            Book = new BookRepository(_db);
         }
         
         public void Save()

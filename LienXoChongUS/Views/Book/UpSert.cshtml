@@ -1,0 +1,90 @@
+﻿@model LXxUS.Models.ViewModel.BookVM
+
+<form method="post" class="container mt-5" enctype="multipart/form-data">
+    <input asp-for="Book.Id" hidden />
+    <input asp-for="Book.ImageUrl" hidden />
+    <div class="category-form card shadow-lg">
+        <div class="category-header card-header bg-primary text-white text-center">
+            <h2>@(Model.Book.Id!=0?"Update":"Create") Product</h2>
+        </div>
+        
+        <div class="col-10">
+            <div class="card-body">               
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Book Title</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Book.Title" type="text" id="categoryName" class="form-control" placeholder="Enter book title" />
+                        <span asp-validation-for="Book.Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Description</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Book.Description" type="text" id="description" class="form-control" placeholder="Enter book description" />
+                        <span asp-validation-for="Book.Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Author</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Book.Author" type="text" id="displayOrder" class="form-control" placeholder="Enter author name" />
+                        <span asp-validation-for="Book.Author" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Book.Price" type="text" id="displayOrder" class="form-control" placeholder="Enter book price" />
+                        <span asp-validation-for="Book.Price" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Category Id</label>
+                    <div class="col-sm-9">
+                        <select asp-for="@Model.Book.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                            <option disabled selected>--Select Category--</option>
+                        </select>
+                        <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Image URL</label>
+                    <div class="col-sm-9">
+                        <input type="file" name="file" id="displayOrder" class="form-control" placeholder="Enter Image URL" />
+                        <span asp-validation-for="Book.ImageUrl" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    @if (Model.Book.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-warning" style="width:150px">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-warning" style="width:150px">Create</button>
+                    }
+
+                    <a asp-controller="Book" asp-action="Index" class="btn btn-dark ml-2">Back To List</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <img src="@Model.Book.ImageUrl" width="100%"
+            style="border-radius:5px; border:1px solid #bbb9b9"/>
+        </div>
+
+        
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

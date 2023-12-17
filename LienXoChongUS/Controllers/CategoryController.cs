@@ -30,14 +30,7 @@ namespace LienXoChongUS.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The Name do not same with the DisplayOrder");
-            }
-            if (obj.Name != null && obj.Name.ToLower() == "test")
-            {
-                ModelState.AddModelError("", "Test is an invalid Value");
-            }
+            
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(obj);
@@ -65,14 +58,6 @@ namespace LienXoChongUS.Controllers
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The Name do not same with the DisplayOrder");
-            }
-            if (obj.Name != null && obj.Name.ToLower() == "test")
-            {
-                ModelState.AddModelError("", "Test is invalid Value");
-            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(obj);

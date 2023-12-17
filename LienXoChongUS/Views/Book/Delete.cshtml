@@ -1,0 +1,48 @@
+﻿@model Book
+
+<form method="post" class="container mt-5">
+    <div class="category-form card shadow-lg">
+        <div class="category-header card-header bg-primary text-white text-center">
+            <h2>Edit Product</h2>
+        </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Book Title</label>
+                <div class="col-sm-9">
+                    <input asp-for="Title" type="text" id="categoryName" disabled class="form-control" placeholder="Enter book title" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <input asp-for="Description" type="text" id="description" disabled class="form-control" placeholder="Enter book description" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Author</label>
+                <div class="col-sm-9">
+                    <input asp-for="Author" type="text" id="displayOrder" disabled class="form-control" placeholder="Enter author name" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-9">
+                    <input asp-for="Price" type="text" id="displayOrder" disabled class="form-control" placeholder="Enter book price" />
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-warning" style="width:150px">Delete</button>
+                <a asp-controller="Book" asp-action="Index" class="btn btn-dark ml-2">Back To List</a>
+            </div>
+        </div>
+    </div>
+    <partial name="_ValidationScriptsPartial" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
