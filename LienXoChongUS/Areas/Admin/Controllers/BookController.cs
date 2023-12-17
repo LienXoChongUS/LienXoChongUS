@@ -2,11 +2,14 @@
 using LXxUS.DataAccess.Repository.IRepository;
 using LXxUS.Models;
 using LXxUS.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace LienXoChongUS.Controllers
+namespace LienXoChongUS.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class BookController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,8 +23,8 @@ namespace LienXoChongUS.Controllers
 
         public IActionResult Index()
         {
-            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties:"Category").ToList();
-            
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Category").ToList();
+
             return View(objBookList);
         }
 
@@ -47,16 +50,16 @@ namespace LienXoChongUS.Controllers
                 return View(bookVM);
             }
 
-            
+
         }
 
         [HttpPost]
         public IActionResult UpSert(BookVM bookVM, IFormFile? file)
-        {          
+        {
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if(file != null)
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string bookPath = Path.Combine(wwwRootPath, @"images\books");
@@ -75,11 +78,11 @@ namespace LienXoChongUS.Controllers
                     using (var fileStream = new FileStream(Path.Combine(bookPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
-                    } ;
+                    };
 
-                    bookVM.Book.ImageUrl = @"\images\books\"+ fileName;
+                    bookVM.Book.ImageUrl = @"\images\books\" + fileName;
                 }
-                if(bookVM.Book.Id == null)
+                if (bookVM.Book.Id == null)
                 {
                     _unitOfWork.Book.Add(bookVM.Book);
                 }
@@ -100,8 +103,8 @@ namespace LienXoChongUS.Controllers
                     Value = u.Id.ToString()
                 });
                 return View(bookVM);
-            }       
-        }                  
+            }
+        }
 
         public IActionResult Delete(int? id)
         {
@@ -109,7 +112,7 @@ namespace LienXoChongUS.Controllers
             {
                 return NotFound();
             }
-            Book? BookFromDb = _unitOfWork.Book.Get(u  => u.Id == id);
+            Book? BookFromDb = _unitOfWork.Book.Get(u => u.Id == id);
             if (BookFromDb == null)
             {
                 return NotFound();

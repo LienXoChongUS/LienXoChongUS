@@ -4,11 +4,13 @@ using LXxUS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LienXoChongUS.Controllers
+namespace LienXoChongUS.Areas.Admin.Controllers
 {
-
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
+
         private readonly IUnitOfWork _unitOfWork;
 
         public CategoryController(IUnitOfWork unitOfWork)
@@ -30,7 +32,7 @@ namespace LienXoChongUS.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(obj);

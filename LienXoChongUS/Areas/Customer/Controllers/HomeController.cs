@@ -1,9 +1,12 @@
 ﻿using LXxUS.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using LXxUS.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace LienXoChongUS.Controllers
+namespace LienXoChongUS.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
