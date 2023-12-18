@@ -24,6 +24,11 @@ namespace LienXoChongUS.Areas.Customer.Controllers
             IEnumerable<Book> productList = _unitOfWork.Book.GetAll(includeProperties: "Category");
             return View(productList);
         }
+        public IActionResult Details(int productId)
+        {
+            Book product = _unitOfWork.Book.Get(u=>u.Id== productId, includeProperties: "Category");
+            return View(product);
+        }
 
         public IActionResult Privacy()
         {
