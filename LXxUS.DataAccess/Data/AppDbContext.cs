@@ -15,6 +15,7 @@ namespace LXxUS.DataAccess.Data
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Book> Books { get; set; }
 		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 

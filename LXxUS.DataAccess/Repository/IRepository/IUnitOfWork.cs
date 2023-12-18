@@ -10,6 +10,8 @@ namespace LXxUS.DataAccess.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         IBookRepository Book { get; }
+        IShoppingCartRepository ShoppingCart { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
         void Save();
     }
