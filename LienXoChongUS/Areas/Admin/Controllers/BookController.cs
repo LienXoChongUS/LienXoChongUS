@@ -24,7 +24,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Category").ToList();
-
+          
             return View(objBookList);
         }
 
@@ -52,7 +52,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
 
 
         }
-
+        
         [HttpPost]
         public IActionResult UpSert(BookVM bookVM, IFormFile? file)
         {
