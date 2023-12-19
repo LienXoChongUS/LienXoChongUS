@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using LXxUS.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace LienXoChongUS.Areas.Customer.Controllers
 {
@@ -26,8 +28,40 @@ namespace LienXoChongUS.Areas.Customer.Controllers
         }
         public IActionResult Details(int productId)
         {
-            Book product = _unitOfWork.Book.Get(u=>u.Id== productId, includeProperties: "Category");
-            return View(product);
+            ShoppingCart cart = new()
+            {
+                Book = _unitOfWork.Book.Get(u => u.Id == productId, includeProperties: "Category"),
+                Count = 1,
+                BookId = productId
+
+            };          
+            return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.AppUserId = userId;
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u=> u.AppUserId == userId && 
+            u.BookId == shoppingCart.BookId);
+
+            if(cartFromDb != null) {
+                //shopping cart exist
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            else {
+                //add new cart
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+            }
+
+            _unitOfWork.Save();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()
