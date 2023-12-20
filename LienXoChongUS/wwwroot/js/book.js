@@ -49,8 +49,8 @@ function Delete(url) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: url
-                type: 'DELETE'
+                url: url,
+                type: 'DELETE',
                 success: function (data) {
                     dataTable.ajax.reload();
                     toastr.success(data.message);
