@@ -133,5 +133,14 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             TempData["SuccessMessage"] = "Book deleted successfully!";
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objBookList });
+        }
+        #endregion
     }
 }
