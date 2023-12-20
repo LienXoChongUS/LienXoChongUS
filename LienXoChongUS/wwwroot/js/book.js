@@ -15,6 +15,7 @@ function loadDataTable() {
             { data: 'price', "width": "10%" },
             { data: 'category.name', "width": "10%" },
             {
+
                 data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">

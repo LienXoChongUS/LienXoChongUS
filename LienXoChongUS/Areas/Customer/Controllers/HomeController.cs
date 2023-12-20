@@ -22,7 +22,7 @@ namespace LienXoChongUS.Areas.Customer.Controllers
         }
 
         public IActionResult Index()
-        {
+            {
             IEnumerable<Book> productList = _unitOfWork.Book.GetAll(includeProperties: "Category");
             return View(productList);
         }
