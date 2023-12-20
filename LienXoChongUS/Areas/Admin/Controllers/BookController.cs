@@ -106,33 +106,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Book? BookFromDb = _unitOfWork.Book.Get(u => u.Id == id);
-            if (BookFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(BookFromDb);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            Book? obj = _unitOfWork.Book.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Book.Delete(obj);
-            _unitOfWork.Save();
-            TempData["SuccessMessage"] = "Book deleted successfully!";
-            return RedirectToAction("Index");
-        }
+       
 
         #region API CALLS
         [HttpGet]
@@ -141,6 +115,25 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objBookList });
         }
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var bookToDelete = _unitOfWork.Book.Get(u => u.Id == id);
+            if (bookToDelete == null)
+            {
+                return Json(new {success = false , message="Error"});
+            }
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, bookToDelete.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+            _unitOfWork.Book.Delete(bookToDelete);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Succesfully" });
+        }
+
         #endregion
     }
 }
