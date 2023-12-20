@@ -131,7 +131,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             }
             _unitOfWork.Book.Delete(bookToDelete);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Succesfully" });
+            return Json(new { success = true, message = "Delete Succesfully" });
         }
 
         #endregion
