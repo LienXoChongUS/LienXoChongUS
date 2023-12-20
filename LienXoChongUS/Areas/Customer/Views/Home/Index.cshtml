@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Book>
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Book>
+@using PagedList.Mvc;
 <style>
     .aspect-ratio-container {
         position: relative;
@@ -40,17 +42,21 @@
 
 </style>
 
-
 <div class="advertisement-banner mt-4">
     <a href="#" target="_blank">
         <img src="/images/_14c40c7d-dc45-4867-8fa5-5ab0c8176572.jpg" alt="Advertisement" class="img-fluid rounded" />
     </a>
 </div>
 
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <div class="row pb-3">
-    
-
     @foreach (var book in Model)
     {
         <div class="col-lg-3 col-sm-6">
@@ -79,4 +85,10 @@
     }
 </div>
 
+<!-- Hiển thị phân trang -->
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 

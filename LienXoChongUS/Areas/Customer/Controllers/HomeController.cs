@@ -6,6 +6,10 @@ using LXxUS.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Drawing.Printing;
+
+using X.PagedList.Mvc.Core;
+using X.PagedList;
 
 namespace LienXoChongUS.Areas.Customer.Controllers
 {
@@ -15,17 +19,63 @@ namespace LienXoChongUS.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger,IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder, string searchString, int? page, string currentFilter)
+        {
+            // Sorting
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.AuthorSortParm = sortOrder == "Author" ? "author_desc" : "Author";
+            // ... các sắp xếp khác
+            ViewBag.CurrentSort = sortOrder;
+            if (searchString != null)
             {
-            IEnumerable<Book> productList = _unitOfWork.Book.GetAll(includeProperties: "Category");
-            return View(productList);
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            // Searching
+            var books = _unitOfWork.Book.GetAll(includeProperties: "Category");
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(b => b.Title.Contains(searchString) || b.Author.Contains(searchString));
+            }
+
+            // Pagination
+            int pageSize = 8; // Số lượng sách trên mỗi trang
+            int pageNumber = (page ?? 1); // Trang hiện tại (mặc định là trang 1)
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    books = books.OrderByDescending(b => b.Title);
+                    break;
+                case "Author":
+                    books = books.OrderBy(b => b.Author);
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(b => b.Author);
+                    break;
+                default:
+                    books = books.OrderBy(b => b.Title);
+                    break;
+            }
+
+            return View(books.ToPagedList(pageNumber, pageSize));
         }
+        //public IActionResult Index()
+        //{
+        //    IEnumerable<Book> productList = _unitOfWork.Book.GetAll(includeProperties: "Category");
+        //    return View(productList);
+        //}
+
         public IActionResult Details(int productId)
         {
             ShoppingCart cart = new()
