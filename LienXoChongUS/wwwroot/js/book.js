@@ -56,6 +56,11 @@ function Delete(url) {
                     toastr.success(data.message);
                 }
             })
+            swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
