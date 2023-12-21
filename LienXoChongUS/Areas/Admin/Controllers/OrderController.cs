@@ -70,8 +70,8 @@ namespace LienXoChongUS.Areas.Admin.Controllers
         }
 
 
-        /*[HttpPost]
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+       [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult StartProcessing()
         {
             _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcess);
@@ -81,7 +81,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult ShipOrder()
         {
 
@@ -89,7 +89,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             orderHeader.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
             orderHeader.Carrier = OrderVM.OrderHeader.Carrier;
             orderHeader.OrderStatus = SD.StatusShipped;
-            orderHeader.ShippingDate = DateTime.Now;
+            orderHeader.ShipDate = DateTime.Now;
             if (orderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment)
             {
                 orderHeader.PaymentDueDate = DateTime.Now.AddDays(30);
@@ -100,8 +100,10 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             TempData["Success"] = "Order Shipped Successfully.";
             return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
         }
+
+        
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult CancelOrder()
         {
 
@@ -131,7 +133,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
         }
 
 
-
+/*
         [ActionName("Details")]
         [HttpPost]
         public IActionResult Details_PAY_NOW()
@@ -161,10 +163,10 @@ namespace LienXoChongUS.Areas.Admin.Controllers
                         Currency = "usd",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
-                            Name = item.Product.Title
+                            Name = item.Book.Title
                         }
                     },
-                    Quantity = item.Count
+                    Quantity = item.Quantity
                 };
                 options.LineItems.Add(sessionLineItem);
             }
@@ -201,8 +203,8 @@ namespace LienXoChongUS.Areas.Admin.Controllers
 
 
             return View(orderHeaderId);
-        }*/
-
+        }
+*/
 
 
         #region API CALLS
