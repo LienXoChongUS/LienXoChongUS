@@ -12,6 +12,8 @@ namespace LXxUS.DataAccess.Repository.IRepository
         IBookRepository Book { get; }
         IShoppingCartRepository ShoppingCart { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
 
         void Save();
     }
