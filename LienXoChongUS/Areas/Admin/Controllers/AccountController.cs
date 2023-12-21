@@ -12,10 +12,10 @@ namespace LienXoChongUS.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -29,7 +29,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
                 foreach (var user in _userManager.GetUsersInRoleAsync(sort).GetAwaiter().GetResult())
                 {
                     List<string> roles = (List<string>)_userManager.GetRolesAsync(user).GetAwaiter().GetResult();
-                    userRoles.Add(new AccountVM { User = user, Roles = roles });
+                    userRoles.Add(new AccountVM { User = (ApplicationUser)user, Roles = roles });
                 }
                 return View(userRoles);
             }
@@ -37,7 +37,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             foreach (var user in users)
             {
                 List<string> roles = (List<string>)_userManager.GetRolesAsync(user).GetAwaiter().GetResult();
-                userRoles.Add(new AccountVM { User = user, Roles = roles });
+                userRoles.Add(new AccountVM { User = (ApplicationUser)user, Roles = roles });
             }
 
             return View(userRoles);

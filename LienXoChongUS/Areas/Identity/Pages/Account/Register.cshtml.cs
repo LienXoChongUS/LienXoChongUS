@@ -105,10 +105,10 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
 
             [Required]
             public string Name { get; set; }
-            public string? StreetAddress {  get; set; }
-            public string? City { get; set; }
-            public string? PhoneNumber { get; set; }
-            public int? StoreOwnerId { get; set; }
+            public string StreetAddress {  get; set; }
+            public string City { get; set; }
+            public string Phone_Number { get; set; }
+
 
         }
 
@@ -146,7 +146,7 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
                 user.StreetAddress = Input.StreetAddress;
                 user.City = Input.City;
                 user.Name = Input.Name;
-                user.PhoneNumber = Input.PhoneNumber;
+                user.PhoneNumber = Input.Phone_Number;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
