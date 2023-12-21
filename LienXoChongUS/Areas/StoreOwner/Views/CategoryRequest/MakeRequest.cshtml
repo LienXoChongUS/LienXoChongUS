@@ -1,0 +1,34 @@
+﻿@model Request
+
+<div class="container">
+    <h1 class="text-left mt-4">Create new Request</h1>
+
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Request_Name" class="form-label"></label>
+                <input asp-for="Request_Name" class="form-control">
+                <span asp-validation-for="Request_Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Request_Description" class="form-label"></label>
+                <input asp-for="Request_Description" class="form-control">
+                <span asp-validation-for="Request_Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a asp-controller="CategoryRequest" asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

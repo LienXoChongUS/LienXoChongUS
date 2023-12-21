@@ -57,14 +57,15 @@
                             <label asp-for="Input.City">City</label>
                             <span asp-validation-for="Input.City" class="text-danger"></span>
                         </div>
-
-                        <div class="form-floating mb-3">
-                            <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
-                                <option selected disabled>--Select Role--</option>
-                            </select>
-                            <label asp-for="Input.Role"></label>
-                        </div>
-
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="form-floating mb-3">
+                                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
+                                    <option selected disabled>--Select Role--</option>
+                                </select>
+                                <label asp-for="Input.Role"></label>
+                            </div>
+                        }
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
                     </div>
                 </div>

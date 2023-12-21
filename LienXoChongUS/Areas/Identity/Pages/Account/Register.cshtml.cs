@@ -3,6 +3,7 @@
 #nullable disable
 
 
+using LXxUS.DataAccess.Repository.IRepository;
 using LXxUS.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,7 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork _unitOfWork;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -33,8 +35,10 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -104,7 +108,8 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
             public string? StreetAddress {  get; set; }
             public string? City { get; set; }
             public string? PhoneNumber { get; set; }
-            
+            public int? StoreOwnerId { get; set; }
+
         }
 
 
@@ -113,6 +118,7 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
             if (!_roleManager.RoleExistsAsync("Customer").GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole("Customer")).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole("Store Owner")).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
             }
             Input = new()
@@ -141,6 +147,7 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
                 user.City = Input.City;
                 user.Name = Input.Name;
                 user.PhoneNumber = Input.PhoneNumber;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -174,7 +181,14 @@ namespace LienXoChongUS.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole("Admin"))
+                        {
+                            TempData["success"] = "New User Created Successfully";
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }
