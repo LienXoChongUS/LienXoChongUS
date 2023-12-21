@@ -16,7 +16,7 @@
     Một "partial view" trong ASP.NET Core là một phần nhỏ của HTML có thể được sử dụng lại và đưa vào các trang khác nhau *@
     <partial name="_Notification"/> @* _Notification ở folder share *@
     
-    <table class="table table-striped">
+    <table id="tblData" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -25,10 +25,11 @@
                 <th scope="col">Author</th>
                 <th scope="col">Price</th>
                 <th scope="col">Category</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var obj in Model)
+           @*  @foreach (var obj in Model)
             {
                 <tr>
                     <td>@obj.Id</td>
@@ -48,7 +49,12 @@
                         </div>
                     </td>
                 </tr>
-            }
+            } *@
         </tbody>
     </table>
 </div>
+
+@section Scripts{
+    <script src="~/js/book.js"></script>
+}
+

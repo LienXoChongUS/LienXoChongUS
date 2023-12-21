@@ -106,32 +106,34 @@ namespace LienXoChongUS.Areas.StoreOwner.Controllers
             }
         }
 
+       
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objBookList });
+        }
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            var bookToDelete = _unitOfWork.Book.Get(u => u.Id == id);
+            if (bookToDelete == null)
             {
-                return NotFound();
+                return Json(new {success = false , message="Error"});
             }
-            Book? BookFromDb = _unitOfWork.Book.Get(u => u.Id == id);
-            if (BookFromDb == null)
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, bookToDelete.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
             {
-                return NotFound();
+                System.IO.File.Delete(oldImagePath);
             }
-            return View(BookFromDb);
+            _unitOfWork.Book.Delete(bookToDelete);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Succesfully" });
         }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            Book? obj = _unitOfWork.Book.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Book.Delete(obj);
-            _unitOfWork.Save();
-            TempData["SuccessMessage"] = "Book deleted successfully!";
-            return RedirectToAction("Index");
-        }
+        #endregion
     }
 }
