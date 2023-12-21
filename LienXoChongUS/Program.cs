@@ -84,7 +84,7 @@ using (var scope = app.Services.CreateScope())
         user.Name = FullName;
         user.StreetAddress = Address;
         user.EmailConfirmed = true;
-        user.PhoneNumber = AD_phonenumber;
+        user.Phone_Number = AD_phonenumber;
         user.City = City;
         userManager.CreateAsync(user, AD_pass).GetAwaiter().GetResult();
         userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
@@ -96,7 +96,7 @@ using (var scope = app.Services.CreateScope())
         user.UserName = SO_email;
         user.Name = FullName;
         user.StreetAddress = Address;
-        user.PhoneNumber = SO_phonenumber;
+        user.Phone_Number = SO_phonenumber;
         user.EmailConfirmed = true;
         user.City = City;
         userManager.CreateAsync(user, SO_pass).GetAwaiter().GetResult();
