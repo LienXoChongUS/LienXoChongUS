@@ -10,6 +10,7 @@ using System.Drawing.Printing;
 
 using X.PagedList.Mvc.Core;
 using X.PagedList;
+using System.Net.Mail;
 
 namespace LienXoChongUS.Areas.Customer.Controllers
 {
