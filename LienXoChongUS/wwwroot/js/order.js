@@ -26,6 +26,11 @@ $(document).ready(function () {
 
 
 function loadDataTable(status) {
+  
+    if ($.fn.DataTable.isDataTable('#tblData')) {
+        dataTable.destroy();
+    }
+   
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/Admin/Order/GetAll?status='+status},
         "columns": [

@@ -40,6 +40,28 @@
             max-height: none;
         }
 
+    .card {
+        width: 250px; /* Cố định chiều rộng của card */
+        height: 400px; /* Cố định chiều cao của card */
+        margin: 10px; /* Đặt margin để giảm khoảng cách giữa các card */
+    }
+
+    .aspect-ratio-container {
+        position: relative;
+        width: 100%;
+        padding-top: 60%; /* Thay đổi tỷ lệ để cân bằng với chiều rộng và chiều cao của card */
+        overflow: hidden;
+    }
+
+    .aspect-ratio-container-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 </style>
 
 <div class="advertisement-banner mt-4">
