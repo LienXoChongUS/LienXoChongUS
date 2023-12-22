@@ -1,11 +1,15 @@
-var dataTable;
+var dataTable1;
 $(document).ready(function () {
     loadDataTable();
 });
 
 
 function loadDataTable() {
-    dataTable = $('#tblData').DataTable({
+    // Destroy the existing DataTable if it's initialized
+    if (dataTable1) {
+        dataTable1.destroy();
+    }
+    dataTable1 = $('#tblData1').DataTable({
         "ajax": { url: '/StoreOwner/Book/GetAll'},
         "columns": [
             { data: 'id',"width":"5%" },
@@ -53,7 +57,7 @@ function Delete(url) {
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
-                    dataTable.ajax.reload();
+                    dataTable1.ajax.reload();
                     toastr.success(data.message);
                 }
             })
