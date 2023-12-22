@@ -29,9 +29,9 @@
                         </div>
 
                         <div class="form-floating mb-3 ">
-                            <input asp-for="Input.PhoneNumber" class="form-control" placeholder="name@example.com" />
-                            <label asp-for="Input.PhoneNumber">Phone Number</label>
-                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                            <input asp-for="Input.Phone_Number" class="form-control" placeholder="name@example.com" />
+                            <label asp-for="Input.Phone_Number">Phone Number</label>
+                            <span asp-validation-for="Input.Phone_Number" class="text-danger"></span>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -57,14 +57,15 @@
                             <label asp-for="Input.City">City</label>
                             <span asp-validation-for="Input.City" class="text-danger"></span>
                         </div>
-
-                        <div class="form-floating mb-3">
-                            <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
-                                <option selected disabled>--Select Role--</option>
-                            </select>
-                            <label asp-for="Input.Role"></label>
-                        </div>
-
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="form-floating mb-3">
+                                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
+                                    <option selected disabled>--Select Role--</option>
+                                </select>
+                                <label asp-for="Input.Role"></label>
+                            </div>
+                        }
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
                     </div>
                 </div>
@@ -72,32 +73,7 @@
         </div>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-6 offset-md-3">
-            <h3 class="text-center mt-4">Use another service to register.</h3>
-            <hr />
-
-            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
-            {
-                <div class="alert alert-warning">
-                    <p>
-                        There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article about setting up this ASP.NET application to support logging in via external services</a>.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                    <div class="text-center">
-                        @foreach (var provider in Model.ExternalLogins!)
-                        {
-                            <button type="submit" class="btn btn-outline-primary" name="provider" value="@provider.Name" title="Register using your @provider.DisplayName account">@provider.DisplayName</button>
-                        }
-                    </div>
-                </form>
-            }
-        </div>
-    </div>
+   
 </div>
 
 @section Scripts {
