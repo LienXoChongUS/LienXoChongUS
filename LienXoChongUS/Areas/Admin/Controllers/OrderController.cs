@@ -215,7 +215,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             IEnumerable<OrderHeader> objOrderHeaders;
 
 
-            if (User.IsInRole(SD.Role_Admin))
+            if (User.IsInRole(SD.Role_Admin) || User.IsInRole("StoreOwner"))
             {
                 objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
             }

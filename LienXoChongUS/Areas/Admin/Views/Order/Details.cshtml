@@ -209,7 +209,7 @@
                                 </li>
                             </ul>
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("StoreOwner"))
                             {
                                 if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
                                 {
