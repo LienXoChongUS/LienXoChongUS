@@ -1,19 +1,19 @@
 ﻿@model Request
 
 <div class="container">
-    <h1 class="text-left mt-4">Create new Request</h1>
+    <h1 class="text-left mt-4">Create new Category Request</h1>
 
     <form method="post" class="row g-3">
         <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="Request_Name" class="form-label"></label>
+                <label asp-for="Request_Name" class="form-label">Category Name</label>
                 <input asp-for="Request_Name" class="form-control">
                 <span asp-validation-for="Request_Name" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="Request_Description" class="form-label"></label>
+                <label asp-for="Request_Description" class="form-label">Category Description</label>
                 <input asp-for="Request_Description" class="form-control">
                 <span asp-validation-for="Request_Description" class="text-danger"></span>
             </div>

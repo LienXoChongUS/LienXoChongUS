@@ -95,7 +95,7 @@
                             <div class="row my-1">
                                 <div class="col-3">Carrier</div>
                                 <div class="col-9">
-                                    @if (User.IsInRole("Admin"))
+                                    @if (User.IsInRole("StoreOwner"))
                                     {
                                         <input asp-for="OrderHeader.Carrier" id="carrier" type="text" class="form-control" />
                                     }
@@ -108,7 +108,7 @@
                             <div class="row my-1">
                                 <div class="col-3">Tracking</div>
                                 <div class="col-9">
-                                    @if (User.IsInRole("Admin"))
+                                    @if (User.IsInRole("StoreOwner"))
                                     {
                                         <input asp-for="OrderHeader.TrackingNumber" id="trackingNumber" type="text" class="form-control" />
                                     }
@@ -209,7 +209,7 @@
                                 </li>
                             </ul>
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("StoreOwner"))
                             {
                                 if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
                                 {

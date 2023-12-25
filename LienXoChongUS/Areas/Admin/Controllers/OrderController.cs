@@ -13,7 +13,7 @@ using System.Security.Claims;
 
 namespace LienXoChongUS.Areas.Admin.Controllers
 {
-    [Area("admin")]
+    [Area("Admin")]
     [Authorize]
     public class OrderController : Controller
     {
@@ -71,7 +71,8 @@ namespace LienXoChongUS.Areas.Admin.Controllers
 
 
        [HttpPost]
-        [Authorize(Roles = SD.Role_Admin)]
+        [Authorize(Roles ="StoreOwner")]
+        
         public IActionResult StartProcessing()
         {
             _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcess);
@@ -81,7 +82,8 @@ namespace LienXoChongUS.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin)]
+        [Authorize(Roles ="StoreOwner")]
+
         public IActionResult ShipOrder()
         {
 
@@ -103,7 +105,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
 
         
         [HttpPost]
-        [Authorize(Roles = SD.Role_Admin)]
+        [Authorize(Roles = "StoreOwner")]
         public IActionResult CancelOrder()
         {
 
@@ -215,7 +217,7 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             IEnumerable<OrderHeader> objOrderHeaders;
 
 
-            if (User.IsInRole(SD.Role_Admin))
+            if (User.IsInRole(SD.Role_Admin) || User.IsInRole("StoreOwner"))
             {
                 objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
             }
