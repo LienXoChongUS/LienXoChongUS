@@ -1,8 +1,10 @@
-﻿
+﻿//Thông tin định dạng và phiên bản Visual Studio: Dòng đầu định dạng của tệp solution.Dòng 2 chỉ định phiên bản Visual Studio của tệp solution. Dòng 3&4 chỉ định phiên bản Visual Studio tối thiểu để mở solution.
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
+
+//Khởi tạo dự án: {mã định danh của dự án}, "tên dự án", "đường dẫn đến tệp dự án", {GUID định danh của dự án}
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LienXoChongUS", "LienXoChongUS\LienXoChongUS.csproj", "{B509201B-5D63-49A2-B39B-3CB42FFB322A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LXxUS.DataAccess", "LXxUS.DataAccess\LXxUS.DataAccess.csproj", "{E234AEF0-2B41-4FE3-AFE4-6F066EE1B6AB}"
@@ -12,10 +14,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LXxUS.Utility", "LXxUS.Utility\LXxUS.Utility.csproj", "{13248C1E-89A7-40FD-8859-BFB1A6506B1B}"
 EndProject
 Global
+
+//Cấu hình và Nền tảng: Chứa thông tin về các cấu hình và nền tảng của solution.
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+//Cấu hình và Nền tảng dự án:Chứa thông tin cấu hình và nền tảng của từng dự án trong solution.
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B509201B-5D63-49A2-B39B-3CB42FFB322A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B509201B-5D63-49A2-B39B-3CB42FFB322A}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -34,10 +39,16 @@ Global
 		{13248C1E-89A7-40FD-8859-BFB1A6506B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13248C1E-89A7-40FD-8859-BFB1A6506B1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+
+//Thuộc tính của Solution: ở đây là thuộc tính HideSolutionNode để ẩn hoặc hiển thị nút solution trong Visual Studio.
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+
+//Các thông số mở rộng: ở đây là SolutionGuid là GUID định danh của solution.
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {344FF230-A69F-4BC7-B17A-FD76F6012214}
 	EndGlobalSection
+
+//Kết thúc định dạng tệp solution:
 EndGlobal
