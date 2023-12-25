@@ -4,6 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using LXxUS.Models;
 using LXxUS.Models.ViewModel;
+using LXxUS.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Data;
+using LXxUS.DataAccess.Repository;
+using LXxUS.DataAccess.Repository.IRepository;
+
 
 
 namespace LienXoChongUS.Areas.Admin.Controllers
@@ -14,9 +21,11 @@ namespace LienXoChongUS.Areas.Admin.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUnitOfWork _unitOfWork;
 
         public AccountController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+
             _userManager = userManager;
             _roleManager = roleManager;
         }
