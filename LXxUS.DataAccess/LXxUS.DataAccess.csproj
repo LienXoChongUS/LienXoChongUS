@@ -31,3 +31,39 @@
   </ItemGroup>
 
 </Project>
+
+<!-- 
+<Project Sdk="Microsoft.NET.Sdk">:
+
+Dòng này xác định loại project và phiên bản của SDK được sử dụng (ở đây là Microsoft.NET.Sdk).
+<PropertyGroup>:
+
+Nhóm các thuộc tính chung của dự án.
+
+<TargetFramework>net7.0</TargetFramework>: Xác định phiên bản .NET target của dự án là 7.0. Điều này chỉ định môi trường thực thi cho ứng dụng.
+
+<ImplicitUsings>enable</ImplicitUsings>: Khi được đặt là enable, nó kích hoạt chế độ sử dụng ngầm, giúp giảm số lượng using statements cần thiết trong mã nguồn.
+
+<Nullable>enable</Nullable>: Bật tính năng nullability cho dự án.
+
+<ItemGroup>:
+
+Nhóm các phần tử liên quan đến việc thêm các gói NuGet, thư viện, và các thứ khác vào dự án.
+
+Các PackageReference để thêm các gói NuGet:
+
+Microsoft.AspNetCore.Identity.EntityFrameworkCore: Cung cấp hỗ trợ Entity Framework Core cho ASP.NET Core Identity.
+Microsoft.AspNetCore.Identity.UI: Cung cấp UI mặc định cho ASP.NET Core Identity.
+Microsoft.AspNetCore.Mvc.Core: Thư viện cốt lõi của ASP.NET Core MVC.
+Microsoft.AspNetCore.Mvc.ViewFeatures: Cung cấp các tính năng liên quan đến hiển thị trong MVC.
+Microsoft.EntityFrameworkCore: Thư viện cốt lõi của Entity Framework Core.
+Microsoft.EntityFrameworkCore.Sqlite: Dùng để kết nối và làm việc với SQLite trong Entity Framework Core.
+Microsoft.EntityFrameworkCore.SqlServer: Dùng để kết nối và làm việc với SQL Server trong Entity Framework Core.
+Microsoft.EntityFrameworkCore.Tools: Cung cấp các công cụ Entity Framework Core cho quy trình xây dựng.
+Microsoft.VisualStudio.Web.CodeGeneration.Design: Cung cấp các công cụ sinh mã cho quy trình xây dựng.
+PagedList.Mvc: Thư viện hỗ trợ phân trang trong ASP.NET MVC.
+Stripe.net: Thư viện Stripe.NET cho xử lý thanh toán Stripe.
+X.PagedList: Thư viện hỗ trợ phân trang cho .NET.
+X.PagedList.Mvc.Core: Thư viện hỗ trợ phân trang cho ASP.NET Core MVC.
+ProjectReference để thêm tham chiếu đến các dự án khác trong solution.
+  -->
