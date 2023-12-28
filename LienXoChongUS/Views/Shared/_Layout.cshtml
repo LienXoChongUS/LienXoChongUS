@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
+                        </li>
                       
                         @if (User.IsInRole("Admin"))
                         {
@@ -41,11 +44,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link " asp-area="Identity" asp-page="/Account/Register">Create User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
-                                <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
-                            </li>
+                            </li>                          
 
                         }
                         else if (User.IsInRole("StoreOwner"))
@@ -56,10 +55,6 @@
                             <li class="nav-item">
                                 <a class="nav-link " asp-area="StoreOwner" asp-controller="CategoryRequest" asp-action="Index">Add request</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
-                            </li>
-
                         }
                        
                             
