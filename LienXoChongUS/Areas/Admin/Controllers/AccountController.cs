@@ -100,29 +100,5 @@ namespace LienXoChongUS.Areas.Admin.Controllers
             }
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> AssignRole(string userId, string newrole)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
-            var currentRoles = await _userManager.GetRolesAsync(user);
-            foreach (var role in currentRoles)
-            {
-                await _userManager.RemoveFromRoleAsync(user, role);
-            }
-            var result = await _userManager.AddToRoleAsync(user, newrole);
-            if (result.Succeeded)
-            {
-                TempData["success"] = "Role assigned successfully";
-            }
-            else
-            {
-                TempData["error"] = "Failed to assign role";
-            }
-            return RedirectToAction("Index");
-        }
     }
 }
